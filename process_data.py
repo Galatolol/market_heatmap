@@ -1,41 +1,52 @@
 from pandas import DataFrame, isna
 from numpy import nan
+from statistics import mean
 
 
-def get_cell_value(market, i, j):
+def get_cell_value(market: DataFrame, i: int, j: int) -> int:
     try:
         if i < 0 or j < 0:
             raise IndexError
-        return market.iat[i, j]
+        value = market.iat[i, j]
+        return int(value) if not isna(value) else nan
     except IndexError:
         return nan
 
 
-def calculate_mean(value1, value2):
-    if isna(value1):
-        return value2
-    if isna(value2):
-        return value1
-    return (value1 + value2) / 2
+def calculate_delta(value: int, neighbor_values: list) -> float:
+    neighbor_values = [x for x in neighbor_values if not isna(x)]
+    if not neighbor_values:
+        return nan
+
+    neighbor_values_mean = mean(neighbor_values)
+    return round((value / neighbor_values_mean - 1) * 100)
 
 
-def calculate_delta(cell, cell_to_left, cell_below):
-    neighbors_mean = calculate_mean(cell_to_left, cell_below)
-    return (cell / neighbors_mean - 1) * 100
+#def calculate_delta(cell, neighbor_cell)
 
 
-def calculate_heat_map(market: DataFrame):
-    delta_values = 0
+def calculate_delta_map(market: DataFrame, from_left: bool = False, from_below: bool = False) -> DataFrame:
+    delta_matrix = []
     row_num = market.shape[0]
     col_num = market.shape[1]
-    a = get_cell_value(market, 0, -1)
-    for i in range(0, row_num):
-        for j in range(col_num - 1, -1, -1):
-            cell = get_cell_value(market, i, j)
-            if isna(cell):
+
+    for i in range(row_num):
+        delta_row = []
+
+        for j in range(col_num):
+            value = get_cell_value(market, i, j)
+            if isna(value):
                 continue
 
-            cell_to_left = get_cell_value(market, i, j - 1)
-            cell_below = get_cell_value(market, i + 1, j)
-            print(f'{cell}, {cell_to_left}, {cell_below}')
-            print(calculate_delta(cell, cell_to_left, cell_below))
+            neighbor_values = []
+            if from_left:
+                neighbor_values.append(get_cell_value(market, i, j - 1))
+            if from_below:
+                neighbor_values.append(get_cell_value(market, i + 1, j))
+
+            delta = calculate_delta(value, neighbor_values)
+            delta_row.append(delta)
+
+        delta_matrix.append(delta_row)
+
+    return DataFrame(delta_matrix)
