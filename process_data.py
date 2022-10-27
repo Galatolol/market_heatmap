@@ -33,6 +33,7 @@ def calculate_delta_map(market: DataFrame, from_left: bool = False, from_below: 
         for j in range(col_num):
             value = get_cell_value(market, i, j)
             if isna(value):
+                delta_row.append(nan)
                 continue
 
             neighbor_values = []

@@ -1,6 +1,6 @@
 ## About
 
-Software to generate heatmaps of stock markets from 18xx games.
+Tool to generate heatmaps of stock markets from 18xx games.
 Inspired by the 1849's market heatmap (see `examples/source_picture.jpg`).
 
 The formula for Δ% (relative delta) is as follows:
@@ -27,11 +27,11 @@ Execute the function:
 
 ## Parameters
 
-`csv_market_path` - path to the csv representation of the market
+`market_path` - path to the file representing the market. Either `hml` or `csv`.
+`html` file is market representation extracted from the Market tab in a game on https://18xx.games.
+It has then to be formatted using https://webformatter.com/html.
 
-`market_img_path` - path to the image of the market. Make sure the image doesn't contain other characters than cell values
-
-**Important:** one of the two above parameters must be provided
+**Important:** The above parameter must be provided
 
 `output_path` - path in which to save generated heatmap images. `'output/heatmap.png'` by default.
 
@@ -49,7 +49,7 @@ Execute the function:
 `delta_from_left_and_below` - whether tho generate the heatmap combinging values bogh to the left and below.
 `True` by default
 
-**Important:** at least on of the four above parameters must be True.
+**Important:** at least on of the four above parameters must be `True`.
 
 `vmax` - threshold after which every value will have the same color.
 Smaller it is, less precisely the heatmap differentiates between large values (i.e. they are of the same color),

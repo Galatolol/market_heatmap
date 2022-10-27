@@ -2,13 +2,12 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 from process_data import calculate_delta_map
-from importer import import_csv_market
+from importer import import_csv_market, import_html_market
 from plot import generate_plot
 
 
 def generate_market_heatmaps(
-        market_img_path: str = '',
-        market_csv_path: str = '',
+        market_path: str = '',
         output_path: str = 'output/heatmap.png',
         show_market: bool = False,
         delta_from_left: bool = False,
@@ -17,12 +16,18 @@ def generate_market_heatmaps(
         vmax: int = 51,
         color_scheme: str = 'gist_ncar'
 ):
-    if not market_img_path and not market_csv_path:
-        raise ValueError('Market source file must be provided')
+    if not market_path:
+        raise ValueError('Path to market file must be provided')
     if not any([show_market, delta_from_left, delta_from_below, delta_from_left_and_below]):
         raise ValueError('At least one of show_market, delta_from_left, delta_from_below and delta_from_left_and_below must be True')
 
-    market = import_csv_market(market_csv_path)
+    market_path_obj = Path(market_path)
+    if market_path_obj.suffix == '.csv':
+        market = import_csv_market(market_path)
+    elif market_path_obj.suffix == '.html':
+        market = import_html_market(market_path)
+    else:
+        raise ValueError('Market file must be either csv or html')
 
     sublots_number = sum([show_market, delta_from_left, delta_from_below, delta_from_left_and_below])
     fig, axs = plt.subplots(sublots_number)
@@ -47,13 +52,13 @@ def generate_market_heatmaps(
         generate_plot(deltas, ax, 'From left and below combined [Δ%]', vmax, color_scheme)
         i += 1
 
-    path = Path(output_path)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    plt.savefig(f'{output_path}')
+    output_path_obj = Path(output_path)
+    output_path_obj.parent.mkdir(parents=True, exist_ok=True)
+    plt.savefig(output_path)
 
 
 if __name__ == '__main__':
-    market_csv_path = f'data/1894_market.csv'
+    market_path = f'data/1830_market.html'
 
-    generate_market_heatmaps(market_csv_path=market_csv_path, show_market=True, delta_from_left_and_below=True, color_scheme='gist_ncar')
+    generate_market_heatmaps(market_path=market_path, show_market=True, delta_from_left_and_below=True, color_scheme='gist_ncar')
 
