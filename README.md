@@ -29,7 +29,9 @@ Execute the function:
 
 `market_path` - path to the file representing the market. Either `hml` or `csv`.
 `html` file is market representation extracted from the Market tab in a game on https://18xx.games.
-It has then to be formatted using https://webformatter.com/html.
+In Inspect mode right-click on the `div` that contains the whole market (but not the legend below it)
+and select `Copy` -> `Inner HTML` (or equivalent).
+Then format it by pasting in https://webformatter.com/html and save as `.html` file.
 
 **Important:** The above parameter must be provided
 
@@ -38,6 +40,9 @@ It has then to be formatted using https://webformatter.com/html.
 `show_market` - whether to generate the heatmap of the market, keeping the raw values.
 `False` by default
 
+`delta_from_left_and_below` - whether tho generate the heatmap combinging values bogh to the left and below.
+`True` by default
+
 `delta_from_left` - whether to generate the heatmap ignoring values of cells below
 (i.e. typically when paying out).
 `False` by default
@@ -45,9 +50,6 @@ It has then to be formatted using https://webformatter.com/html.
 `delta_from_below` - whether to generate the heatmap ignoring values of cells to the left
 (i.e. typically when being sold out).
 `False` by default
-
-`delta_from_left_and_below` - whether tho generate the heatmap combinging values bogh to the left and below.
-`True` by default
 
 **Important:** at least on of the four above parameters must be `True`.
 

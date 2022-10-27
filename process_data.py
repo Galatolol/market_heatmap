@@ -19,6 +19,9 @@ def calculate_delta(value: int, neighbor_values: list) -> float:
         return nan
 
     neighbor_values_mean = mean(neighbor_values)
+    if not neighbor_values_mean:
+        return nan
+
     return round((value / neighbor_values_mean - 1) * 100)
 
 
@@ -32,7 +35,7 @@ def calculate_delta_map(market: DataFrame, from_left: bool = False, from_below: 
 
         for j in range(col_num):
             value = get_cell_value(market, i, j)
-            if isna(value):
+            if isna(value) or not value:
                 delta_row.append(nan)
                 continue
 

@@ -42,6 +42,10 @@ class TestImporter(unittest.TestCase):
         result = calculate_delta(110, [])
         self.assertTrue(isna(result))
 
+    def test_calculate_delta_division_by_zero(self):
+        result = calculate_delta(10, [0])
+        self.assertTrue(isna(result))
+
 
     def test_calculate_delta_map_from_left(self):
         expected_result = DataFrame([
