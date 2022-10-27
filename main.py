@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 from process_data import calculate_delta_map
-from utils import import_csv_market
-from plots import generate_plot
+from importer import import_csv_market
+from plot import generate_plot
 
 
 def generate_market_heatmaps(

@@ -22,9 +22,6 @@ def calculate_delta(value: int, neighbor_values: list) -> float:
     return round((value / neighbor_values_mean - 1) * 100)
 
 
-#def calculate_delta(cell, neighbor_cell)
-
-
 def calculate_delta_map(market: DataFrame, from_left: bool = False, from_below: bool = False) -> DataFrame:
     delta_matrix = []
     row_num = market.shape[0]
