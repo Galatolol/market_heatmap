@@ -23,7 +23,7 @@ Import the main function:
 
 Execute the function:
 
-`generate_market_heatmaps(csv_market_path='data/1894_market.csv)`
+`generate_market_heatmaps(market_path='data/1830_market.html')`
 
 ## Parameters
 

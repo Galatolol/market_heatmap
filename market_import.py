@@ -27,13 +27,13 @@ def is_alphanum_or_coma_or_newline(x: str) -> bool:
     return False
 
 
-def nan_or_int(x: str) -> int:
+def nan_or_int(x: str):
     if x in ['\n', 'nan']:
         return nan
     return int(x)
 
 
-def parse_html_txt_market(html_txt: str) -> list:
+def parse_html_txt_market(html_txt: str) -> list[list]:
     html_txt_junk_removed = ''.join([x for x in html_txt if is_alphanum_or_coma_or_newline(x)])
     html_txt_newlines_replaced = html_txt_junk_removed.replace('\n\n\n\n\n\n\n', ';').replace('\n\n\n\n\n', ',').strip().replace('\n', '\n,')
     rows = html_txt_newlines_replaced.split(';')

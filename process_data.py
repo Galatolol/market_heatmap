@@ -3,7 +3,7 @@ from numpy import nan
 from statistics import mean
 
 
-def get_cell_value(market: DataFrame, i: int, j: int) -> int:
+def get_cell_value(market: DataFrame, i: int, j: int):
     try:
         if i < 0 or j < 0:
             raise IndexError
@@ -13,7 +13,7 @@ def get_cell_value(market: DataFrame, i: int, j: int) -> int:
         return nan
 
 
-def calculate_delta(value: int, neighbor_values: list) -> float:
+def calculate_delta(value: int, neighbor_values: list):
     neighbor_values = [x for x in neighbor_values if not isna(x)]
     if not neighbor_values:
         return nan
