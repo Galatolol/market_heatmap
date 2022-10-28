@@ -7,7 +7,7 @@ The formula for Δ% (relative delta) is as follows:
 
 _Δ% = (N / avg(N_l, N_b) - 1) * 100_
 
-Where _N_0_ is value of a given cell, _N_l_ is value of the cell to the left and _N_b_ is value of the cell below.
+Where _N_ is value of a given cell, _N_l_ is value of the cell to the left and _N_b_ is value of the cell below.
 
 When calculating _Δ%_ "from left" and "from below", _N_b_ and _N_l_ are ignored, respectively.
 
