@@ -1,6 +1,6 @@
 ## About
 
-Tool to generate heatmaps of stock markets from 18xx games.
+A tool for generating heatmaps of stock markets from 18xx games.
 Inspired by the 1849's market heatmap (see `examples/source_picture.jpg`).
 
 The formula for Δ% (relative delta) is as follows:
@@ -13,7 +13,7 @@ When calculating _Δ%_ "from left" and "from below", _N_b_ and _N_l_ are ignored
 
 ## Use
 
-Run python3:
+Run python in the project directory:
 
 `python3`
 
