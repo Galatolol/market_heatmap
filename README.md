@@ -3,7 +3,7 @@
 A tool for generating heatmaps of stock markets from 18xx games.
 Inspired by the 1849's market heatmap (see `examples/source_picture.jpg`).
 
-The formula for Δ% (relative delta) is as follows:
+The formula for _Δ%_ (relative delta) is as follows:
 
 _Δ% = (N / avg(N_l, N_b) - 1) * 100_
 
