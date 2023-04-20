@@ -28,12 +28,16 @@ Execute the function:
 ## Parameters
 
 `market_path` - path to the file representing the market. Either `hml` or `csv`.
-`html` file is market representation extracted from the Market tab in a game on https://18xx.games.
+
+- `csv` - file in which every line represents one row of the market, with values separated by comas. Comas for the non-existent cells still must be provided (see `data/1894_market.csv`).
+
+- `html` - file is the representation of the market extracted from the Market tab in a game on https://18xx.games.
 In Inspect mode right-click on the `div` that contains the whole market (but not the legend below it)
 and select `Copy` -> `Inner HTML` (or equivalent).
 Then format it by pasting in https://webformatter.com/html and save as `.html` file.
+Avoid copying markets with "markers" on them or remember to replace `div`s containing `logo` by `<div></div>`.
 
-**Important:** The above parameter must be provided
+**Important:** The above parameter must be provided.
 
 `output_path` - path in which to save generated heatmap images. `'output/heatmap.png'` by default.
 
