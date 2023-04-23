@@ -60,7 +60,7 @@ def generate_market_heatmaps(
 
 
 if __name__ == '__main__':
-    market_path = 'data/1871_market.html'
+    market_path = 'data/1894_market.csv'
 
     generate_market_heatmaps(market_path=market_path, show_market=True, delta_from_left_and_below=True,
                              delta_from_left=True, delta_from_below=True, color_scheme='gist_ncar')
