@@ -6,3 +6,4 @@
 /__pycache__/
 /output/
 /test/__pycache__/
+.coverage
